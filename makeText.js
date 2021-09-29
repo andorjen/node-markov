@@ -5,9 +5,7 @@ const { MarkovMachine } = require('./markov');
 const fsP = require('fs/promises')
 const axios = require('axios')
 
-/** function that takes a path to a file */
-
-
+/** function that takes a path to a file, reads the file and make a markov machine instance, output text*/
 async function cat(path) {
 
     try {
@@ -21,7 +19,7 @@ async function cat(path) {
     }
 };
 
-
+/** function that takes an url to a file, reads the file and make a markov machine instance, output text*/
 async function webCat(url) {
     try {
         let resp = await axios.get(url);
@@ -37,9 +35,8 @@ async function webCat(url) {
 
 
 let path = process.argv[3];
-console.log("path is", path)
+
 if (path.includes('http://')) {
-    console.log("inside webCat")
     webCat(path);
 } else {
     cat(path);
